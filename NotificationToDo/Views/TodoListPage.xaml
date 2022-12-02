@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:NotificationToDo.Models"
+             x:Class="NotificationToDo.Views.TodoListPage"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True"
+             Title="Список заметок">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="*,Auto">
+        <CollectionView 
+                  VerticalOptions="Fill"
+                  ItemsSource="{Binding Items}"
+                  SelectionMode="Single"
+                  SelectionChanged="CollectionView_SelectionChanged" 
+                  Margin="10, 10, 10, 10"
+                    >
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:TodoItem">
+                        <Grid ColumnDefinitions="*, Auto" Padding="10">
+                        <Border Padding="20" StrokeThickness="0">
+                            <Border.Shadow>
+                                <Shadow Opacity="0.6"/>
+                                
+                            </Border.Shadow>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10,10,10,10"/>
+                            </Border.StrokeShape>
+                            <Label Text="{Binding Note}  "
+                                   VerticalTextAlignment="Center" LineBreakMode="WordWrap"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Grid.Row="1" Text="Добавить заметку" Padding="20" Clicked="OnItemAdded"
+                Margin="20"/>
+    </Grid>
+</ContentPage>

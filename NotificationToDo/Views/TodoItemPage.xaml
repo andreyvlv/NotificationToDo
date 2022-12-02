@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotificationToDo.Views.TodoItemPage"
+             Title="Редактирование заметки"
+             xmlns:models="clr-namespace:NotificationToDo.Models"
+             x:DataType="models:TodoItem">
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="15"
+                             VerticalOptions="StartAndExpand">
+            <Entry Placeholder="Введите текст заметки" Margin="10, 10, 10, 10" Text="{Binding Note}" />
+            <Button Text="Сохранить"
+                    Clicked="OnSaveClicked" />
+            <Button Text="Удалить"
+                    Clicked="OnDeleteClicked" />
+            <Button Text="Создать уведомление"
+                    Clicked="OnCreateNotificationClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
